@@ -2,6 +2,7 @@ package com.mtihc.minecraft.treasurechest.v8.util.prompts;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
@@ -157,8 +158,8 @@ public abstract class SelectRegionPrompt extends ValidatingPrompt {
 	}
 
 	private Block getTargetBlock(Player player) {
-		Block block = player.getTargetBlock(null, 8);
-		if (block == null || block.getTypeId() == 0) {
+		Block block = player.getTargetBlock(null, 8);	//couldn't find a suitable update
+		if (block == null || block.getType() == Material.AIR) {
 			return null;
 		}
 		return block;

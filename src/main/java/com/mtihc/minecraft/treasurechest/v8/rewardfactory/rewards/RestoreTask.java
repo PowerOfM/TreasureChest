@@ -183,12 +183,10 @@ abstract class RestoreTask implements Runnable {
 	 * @param region
 	 *            The region to restore
 	 */
-	public static void restoreRegionInstantly(ChunkStore chunkStore,
-			Region region) {
-		SnapshotRestore restore = new SnapshotRestore(chunkStore, region);
-		
+	public static void restoreRegionInstantly(ChunkStore chunkStore, Region region) {		
 		try {
-			restore.restore(new EditSession(region.getWorld(), -1));
+			SnapshotRestore restore = new SnapshotRestore(chunkStore, new EditSession(region.getWorld(), -1), region); //a little re-arrangement
+			restore.restore();
 		} catch (NullPointerException e) {
 			
 		} catch (MaxChangedBlocksException e) {
